@@ -1,5 +1,9 @@
 // Asynchronous Node.js
+
 const request = require("request");
+
+// Require the goecode application
+const geocode = require("./utils/geocode");
 
 const url =
   "http://api.weatherstack.com/current?access_key=ac15f8d48dc4a623bcb53051e939c9bb&query=New%20York";
@@ -53,26 +57,26 @@ const url =
 // Refactoring the geocode program with callbacks, reusable function
 //
 // Geocode function
-const geocode = (address, callback) => {
-  const url =
-    "https://api.mapbox.com/geocoding/v5/mapbox.places/" +
-    encodeURIComponent(address) +
-    ".json?access_token=pk.eyJ1IjoidWx0cmFzb2Z0IiwiYSI6ImNrbnM1cHkzeTAzODgycXMxemdpN3h6YzYifQ.k87LpRwQe8htBBBoDtCcOA";
+// const geocode = (address, callback) => {
+//   const url =
+//     "https://api.mapbox.com/geocoding/v5/mapbox.places/" +
+//     encodeURIComponent(address) +
+//     ".json?access_token=pk.eyJ1IjoidWx0cmFzb2Z0IiwiYSI6ImNrbnM1cHkzeTAzODgycXMxemdpN3h6YzYifQ.k87LpRwQe8htBBBoDtCcOA";
 
-  request({ url: url, json: true }, (error, response) => {
-    if (error) {
-      callback("Unable to connect to location services!", undefined);
-    } else if (response.body.features.length === 0) {
-      callback("Unable to find the location on Geocoding", undefined);
-    } else {
-      callback(undefined, {
-        latitude: response.body.features[0].center[0],
-        latitud: response.body.features[0].center[1],
-        place: response.body.features[0].place_name,
-      });
-    }
-  });
-};
+//   request({ url: url, json: true }, (error, response) => {
+//     if (error) {
+//       callback("Unable to connect to location services!", undefined);
+//     } else if (response.body.features.length === 0) {
+//       callback("Unable to find the location on Geocoding", undefined);
+//     } else {
+//       callback(undefined, {
+//         latitude: response.body.features[0].center[0],
+//         latitud: response.body.features[0].center[1],
+//         place: response.body.features[0].place_name,
+//       });
+//     }
+//   });
+// };
 
 // The caller: geocode
 geocode("Medellin", (error, data) => {
