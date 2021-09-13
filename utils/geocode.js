@@ -1,5 +1,5 @@
 // Request library
-const request = require('request');
+const request = require("request");
 
 // Geocode function
 const geocode = (address, callback) => {
