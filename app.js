@@ -50,7 +50,7 @@ const url =
 //   }
 // });
 
-// Refactoring the geocode program with callbacks
+// Refactoring the geocode program with callbacks, reusable function
 //
 // Geocode function
 const geocode = (address, callback) => {
