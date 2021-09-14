@@ -17,3 +17,39 @@ const add = (num1, num2, callback) => {
 add (1, 4, (sum) => {
     console.log(sum); // Should print: 5
 })
+
+// ES6 features that make it easier to work with objects
+//
+// Object property shorthand
+// 
+const name = 'Andres';
+const userAge = 30;
+
+const user = {
+    // name: name, previous form, only with name it will grap the value of the name variable (Shorthand)
+    name,
+    age: userAge,
+    localtion: 'Colombia',
+}
+
+// console.log(user);
+
+// Destructuring: to an object created and extract the properties of the object
+//
+const product = {
+    label: 'Red notebook',
+    price: 3,
+    salePrice: undefined,
+    stock: '420-A'
+};
+// Rename the name of a property it's also an option from desctructuring
+const {label, price} = product;
+console.log(label, price);
+
+// Destructuring with functions
+//
+const transaction = (type, { label, stock }) => {
+    console.log(type, label, stock);
+}
+
+transaction('order', product);
