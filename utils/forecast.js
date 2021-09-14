@@ -29,8 +29,8 @@ const forecast = (x, y, callback) => {
     } else {
       callback(undefined, {
         name: response.body.location.name,
-        lat: response.body.location.lat,
-        lon: response.body.location.lon,
+        lon: response.body.location.lat,
+        lat: response.body.location.lon,
         time: response.body.location.localtime,
       });
     }

@@ -1,7 +1,5 @@
 // Asynchronous Node.js
 //
-const request = require("request");
-//
 // Require the geocode function
 const geocode = require("./utils/geocode");
 //
@@ -79,13 +77,17 @@ const forecast = require("./utils/forecast");
 // };
 
 // The caller: geocode
-geocode("Medellin", (error, data) => {
-  console.log("Error", error);
-  console.log("Data", data);
-});
-//
-// The caller: forecast
-forecast(-75.7088, 44.1545, (error, data) => {
-  console.log("Error", error);
-  console.log("Data", data);
+geocode("Boston", (error, data) => {
+  // Handling errors
+  if (error) {
+    return console.log(error);
+  }
+  // Callback Channing
+  forecast(data.latitude, data.longitude, (error, forecastData) => {
+    if (error) {
+      return console.log(error);
+    }
+    console.log(data.location);
+    console.log(forecastData);
+  });
 });
