@@ -76,18 +76,28 @@ const forecast = require("./utils/forecast");
 //   });
 // };
 
-// The caller: geocode
-geocode("Boston", (error, data) => {
-  // Handling errors
-  if (error) {
-    return console.log(error);
-  }
-  // Callback Channing
-  forecast(data.latitude, data.longitude, (error, forecastData) => {
+// Goal: Accept location via command line argument
+//
+// console.log(process.argv); To check the arguments in the console -> test with: node app.js "Something"
+
+const address = process.argv[2];
+// If there is not info on the argv[2] (!address)
+
+if (!address) {
+  console.log("Please provide a location");
+} else {
+  // The caller: geocode
+  geocode(address, (error, data) => {
+    // Handling errors
     if (error) {
       return console.log(error);
     }
-    console.log(data.location);
-    console.log(forecastData);
+    // Callback Channing
+    forecast(data.latitude, data.longitude, (error, forecastData) => {
+      if (error) {
+        return console.log(error);
+      }
+      console.log(data.location, forecastData);
+    });
   });
-});
+}
