@@ -11,21 +11,27 @@ const app = express();
 //
 // .get method: 1st argument is the rute (partial url), 2nd argument a function that describes what's going to happen when an user visit the partial url
 app.get("", (req, res) => {
-  res.send("Hello Express!");
+  res.send("<h1>Hello Express!</h1>");
 });
 //
 app.get("/help", (req, res) => {
-  res.send("Help page");
+  res.send({
+    name: "Ultra",
+    age: 30,
+  });
 });
 //
 // Challange: set an about route and render a page title
 app.get("/about", (req, res) => {
-  res.send("About page");
+  res.send("<h2>This is the about page</h2>");
 });
 //
 // Challenge: set a weather route and render a page title
 app.get("/weather", (req, res) => {
-  res.send("Weather is going to be here");
+  res.send({
+    forecast: "It is sunny",
+    Place: "Medellin",
+  });
 });
 // To starts up the server with listen method
 app.listen(3000, () => {
