@@ -86,18 +86,18 @@ const address = process.argv[2];
 if (!address) {
   console.log("Please provide a location");
 } else {
-  // The caller: geocode
-  geocode(address, (error, data) => {
+  // The caller: geocode and destructuring the data into latitude, longitude and location
+  geocode(address, (error, { latitude, longitude, location }) => {
     // Handling errors
     if (error) {
       return console.log(error);
     }
     // Callback Channing
-    forecast(data.latitude, data.longitude, (error, forecastData) => {
+    forecast(latitude, longitude, (error, forecastData) => {
       if (error) {
         return console.log(error);
       }
-      console.log(data.location, forecastData);
+      console.log(location, forecastData);
     });
   });
 }

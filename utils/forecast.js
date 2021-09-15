@@ -17,21 +17,22 @@ const forecast = (x, y, callback) => {
     y +
     "," +
     x;
-  request({ url: url, json: true }, (error, response) => {
+  // Re-structuring with destructuring, response can change to body 
+  request({ url: url, json: true }, (error, { body }) => {
     if (error) {
       callback(
         "Unable to connect to the API",
         "Unable to connect to the API",
         undefined
       );
-    } else if (response.body.error) {
+    } else if (body.error) {
       callback("Unable to connect to the weatherstack", undefined);
     } else {
       callback(undefined, {
-        name: response.body.location.name,
-        lon: response.body.location.lat,
-        lat: response.body.location.lon,
-        time: response.body.location.localtime,
+        name: body.location.name,
+        lon: body.location.lat,
+        lat: body.location.lon,
+        time: body.location.localtime,
       });
     }
   });
