@@ -1,5 +1,5 @@
 // To get the path
-const path = require('path');
+const path = require("path");
 //
 // New express application
 const express = require("express");
@@ -9,11 +9,38 @@ const app = express();
 //
 // The paths to connect the application with the index.html in the public folder
 console.log(__dirname);
-const publicDirectoryPath = path.join(__dirname, '../public');
-console.log(path.join(__dirname, '../public')); // I can use as a second paramenter ../ to move up one level in the directory
+const publicDirectoryPath = path.join(__dirname, "../public");
+console.log(path.join(__dirname, "../public")); // I can use as a second paramenter ../ to move up one level in the directory
 //
+// To get handlebars set up - hbs library
+app.set("view engine", "hbs");
 // app.use() To serve our server, customize the server
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, "../public")));
+//
+// Set up a route to the handlebars and view the index.hbs, res.render allows us to render a page, we must delete the previous file from public "index.html"
+app.get("", (req, res) => {
+  res.render("index", {
+    title: "Weather App",
+    name: "Ultra",
+  });
+});
+//
+// About route path with res.render
+app.get("/about", (req, res) => {
+  res.render("about", {
+    title: "About me..",
+    name: "Ultrasoft",
+  });
+});
+// Help route path with res.render - hbs
+app.get("/help", (req, res) => {
+  res.render("help", {
+    title: "Help",
+    name: "Help me!"
+  })
+})
+
+
 // app.com (root rout)
 // app.com/help
 // app.com/about
