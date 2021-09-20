@@ -14,7 +14,6 @@ console.log(path.join(__dirname, '../public')); // I can use as a second paramen
 //
 // app.use() To serve our server, customize the server
 app.use(express.static(path.join(__dirname, '../public')));
-//
 // app.com (root rout)
 // app.com/help
 // app.com/about
@@ -24,17 +23,17 @@ app.get("", (req, res) => {
   res.send("<h1>Hello Express!</h1>");
 });
 //
-app.get("/help", (req, res) => {
-  res.send({
-    name: "Ultra",
-    age: 30,
-  });
-});
+// app.get("/help", (req, res) => {
+//   res.send({
+//     name: "Ultra",
+//     age: 30,
+//   });
+// });
 //
 // Challange: set an about route and render a page title
-app.get("/about", (req, res) => {
-  res.send("<h2>This is the about page</h2>");
-});
+// app.get("/about", (req, res) => {
+//   res.send("<h2>This is the about page</h2>");
+// });
 //
 // Challenge: set a weather route and render a page title
 app.get("/weather", (req, res) => {
