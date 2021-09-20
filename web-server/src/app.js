@@ -1,9 +1,19 @@
+// To get the path
+const path = require('path');
+//
 // New express application
-//
 const express = require("express");
-// Variable to store the application
 //
+// Variable to store the application
 const app = express();
+//
+// The paths to connect the application with the index.html in the public folder
+console.log(__dirname);
+const publicDirectoryPath = path.join(__dirname, '../public');
+console.log(path.join(__dirname, '../public')); // I can use as a second paramenter ../ to move up one level in the directory
+//
+// app.use() To serve our server, customize the server
+app.use(express.static(path.join(__dirname, '../public')));
 //
 // app.com (root rout)
 // app.com/help
