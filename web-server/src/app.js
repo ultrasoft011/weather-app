@@ -10,10 +10,15 @@ const app = express();
 // The paths to connect the application with the index.html in the public folder
 console.log(__dirname);
 const publicDirectoryPath = path.join(__dirname, "../public");
+const viewsPath = path.join(__dirname, '../templates');
 console.log(path.join(__dirname, "../public")); // I can use as a second paramenter ../ to move up one level in the directory
 //
 // To get handlebars set up - hbs library
 app.set("view engine", "hbs");
+//
+// Another set express method to customize paths
+app.set('views', viewsPath);
+//
 // app.use() To serve our server, customize the server
 app.use(express.static(path.join(__dirname, "../public")));
 //
