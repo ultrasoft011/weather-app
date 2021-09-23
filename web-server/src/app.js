@@ -1,27 +1,28 @@
 // To get the path
 const path = require("path");
-//
+const hbs = require("hbs"); // Require HBS
+
 // New express application
 const express = require("express");
-//
+const { hasSubscribers } = require("diagnostics_channel");
+
 // Variable to store the application
 const app = express();
-//
+
 // The paths to connect the application with the index.html in the public folder
-console.log(__dirname);
 const publicDirectoryPath = path.join(__dirname, "../public");
-const viewsPath = path.join(__dirname, '../templates');
+const viewsPath = path.join(__dirname, "../templates/views");
+const partialPath = path.join(__dirname, "../templates/partials");
 console.log(path.join(__dirname, "../public")); // I can use as a second paramenter ../ to move up one level in the directory
-//
-// To get handlebars set up - hbs library
+
+// To get handlebars set up - hbs library. Define paths for Express config
 app.set("view engine", "hbs");
-//
-// Another set express method to customize paths
-app.set('views', viewsPath);
-//
+app.set("views", viewsPath);
+hbs.registerPartials(partialPath);
+
 // app.use() To serve our server, customize the server
 app.use(express.static(path.join(__dirname, "../public")));
-//
+
 // Set up a route to the handlebars and view the index.hbs, res.render allows us to render a page, we must delete the previous file from public "index.html"
 app.get("", (req, res) => {
   res.render("index", {
@@ -29,7 +30,7 @@ app.get("", (req, res) => {
     name: "Ultra",
   });
 });
-//
+
 // About route path with res.render
 app.get("/about", (req, res) => {
   res.render("about", {
@@ -37,14 +38,14 @@ app.get("/about", (req, res) => {
     name: "Ultrasoft",
   });
 });
+
 // Help route path with res.render - hbs
 app.get("/help", (req, res) => {
   res.render("help", {
     title: "Help",
-    name: "Help me!"
-  })
-})
-
+    name: "Help me!",
+  });
+});
 
 // app.com (root rout)
 // app.com/help
@@ -74,6 +75,7 @@ app.get("/weather", (req, res) => {
     Place: "Medellin",
   });
 });
+
 // To starts up the server with listen method
 app.listen(3000, () => {
   console.log("Server is ON");
