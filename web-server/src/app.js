@@ -76,6 +76,23 @@ app.get("/weather", (req, res) => {
   });
 });
 
+app.get("/help/*", (req, res) => {
+  res.render("404", {
+    title: "404 Help",
+    name: "Andres Felipe",
+    errorMessage: "Help article not found",
+  });
+});
+
+// * express wild card caracter, match everything that hasn't been matched
+app.get("*", (req, res) => {
+  res.render("404", {
+    title: "404",
+    name: "Andres Felipe",
+    errorMessage: "Page not found.",
+  });
+});
+
 // To starts up the server with listen method
 app.listen(3000, () => {
   console.log("Server is ON");
