@@ -1,4 +1,27 @@
-h1 {
-    font-size: 20px;
-    color: purple;
+body {
+  color: rgb(34, 27, 27);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 20px;
+}
+
+header {
+  margin-top: 16px;
+  margin-bottom: 50px;
+}
+
+a {
+  text-decoration: none;
+  color: #9c9c9c;
+}
+
+footer {
+  color: #9c9c9c;
+  border-top: 1px solid #353535;
+}
+
+h2 {
+  font-size: 35px;
+  color: rgb(63, 63, 63);
 }
