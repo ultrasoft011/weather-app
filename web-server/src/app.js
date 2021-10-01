@@ -2,6 +2,9 @@
 const path = require("path");
 const hbs = require("hbs"); // Require HBS
 
+const geocode = require("./utils/geocode");
+const forecast = require("./utils/forecast");
+
 // New express application
 const express = require("express");
 const { hasSubscribers } = require("diagnostics_channel");
@@ -74,12 +77,31 @@ app.get("/weather", (req, res) => {
     return res.send({
       error: "Please confirm the adress",
     });
-  } else {
-    return res.send({
-      forecast: "It is sunny",
-      name: req.query.address,
-    });
   }
+
+  geocode(req.query.address, (error, { longitude, latitude, location }) => {
+    if (error) {
+      return res.send({ error });
+    }
+
+    forecast(
+      latitude,
+      longitude,
+      (error,
+      (forecastData) => {
+        if (error) {
+          return res.send({ error });
+        }
+
+        res.send({
+          location,
+          address: req.query.address,
+          latitud: latitude,
+          longitude: longitude
+        });
+      })
+    );
+  });
 });
 
 app.get("/products", (req, res) => {
