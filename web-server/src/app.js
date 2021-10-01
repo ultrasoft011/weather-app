@@ -70,9 +70,27 @@ app.get("", (req, res) => {
 //
 // Challenge: set a weather route and render a page title
 app.get("/weather", (req, res) => {
+  if (!req.query.address) {
+    return res.send({
+      error: "Please confirm the adress",
+    });
+  } else {
+    return res.send({
+      forecast: "It is sunny",
+      name: req.query.address,
+    });
+  }
+});
+
+app.get("/products", (req, res) => {
+  if (!req.query.search) {
+    return res.send({
+      error: "You must provide a search term",
+    });
+  }
+  console.log(req.query);
   res.send({
-    forecast: "It is sunny",
-    Place: "Medellin",
+    products: [],
   });
 });
 
