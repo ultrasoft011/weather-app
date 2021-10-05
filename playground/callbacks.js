@@ -48,8 +48,10 @@ console.log(label, price);
 
 // Destructuring with functions
 //
-const transaction = (type, { label, stock }) => {
+const transaction = (type, { label, stock } = {}) => {
     console.log(type, label, stock);
 }
 
 transaction('order', product);
+// When I use just one parameter the function transaction will crash, solution: set the destructure equal to an empty object
+transaction('order');

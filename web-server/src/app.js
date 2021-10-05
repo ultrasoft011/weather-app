@@ -78,8 +78,8 @@ app.get("/weather", (req, res) => {
       error: "Please confirm the adress",
     });
   }
-
-  geocode(req.query.address, (error, { longitude, latitude, location }) => {
+  // Important: set the destructuring equal to an empty object to avoid issues when the user doesn't provide any city information, other way the app will chash
+  geocode(req.query.address, (error, { longitude, latitude, location } = {}) => {
     if (error) {
       return res.send({ error });
     }
