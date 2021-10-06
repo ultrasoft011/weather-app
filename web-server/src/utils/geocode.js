@@ -15,6 +15,7 @@ const geocode = (address, callback) => {
       callback("Unable to find the location on Geocoding", undefined);
     } else {
       callback(undefined, {
+        forecast: response.body,
         latitude: response.body.features[0].center[1],
         longitude: response.body.features[0].center[0],
         location: response.body.features[0].place_name,

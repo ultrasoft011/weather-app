@@ -87,7 +87,7 @@ if (!address) {
   console.log("Please provide a location");
 } else {
   // The caller: geocode and destructuring the data into latitude, longitude and location
-  geocode(address, (error, { latitude, longitude, location }) => {
+  geocode(address, (error, {latitude, longitude, location }) => {
     // Handling errors
     if (error) {
       return console.log(error);

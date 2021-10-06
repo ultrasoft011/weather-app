@@ -28,6 +28,7 @@ const forecast = (x, y, callback) => {
     } else if (body.error) {
       callback("Unable to connect to the weatherstack", undefined);
     } else {
+      console.log(body);
       callback(undefined, {
         name: body.location.name,
         lon: body.location.lat,
