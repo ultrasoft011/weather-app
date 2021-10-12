@@ -17,7 +17,7 @@ const forecast = (x, y, callback) => {
     y +
     "," +
     x;
-  // Re-structuring with destructuring, response can change to body 
+  // Re-structuring with destructuring, response can change to body
   request({ url: url, json: true }, (error, { body }) => {
     if (error) {
       callback(
@@ -28,8 +28,10 @@ const forecast = (x, y, callback) => {
     } else if (body.error) {
       callback("Unable to connect to the weatherstack", undefined);
     } else {
+      // console.log(body);
       callback(undefined, {
         name: body.location.name,
+        forecast: `Weather Description: ${body.current.weather_descriptions} and the temperature is ${body.current.temperature}°C but it feels like ${body.current.feelslike}°C.`,
         lon: body.location.lat,
         lat: body.location.lon,
         time: body.location.localtime,

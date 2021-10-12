@@ -8,6 +8,7 @@ const forecast = require("./utils/forecast");
 // New express application
 const express = require("express");
 const { hasSubscribers } = require("diagnostics_channel");
+const { time } = require("console");
 
 // Variable to store the application
 const app = express();
@@ -75,35 +76,31 @@ app.get("", (req, res) => {
 app.get("/weather", (req, res) => {
   if (!req.query.address) {
     return res.send({
-      error: "Please confirm the adress",
+      error: "Please confirm the address",
     });
   }
-  // Important: set the destructuring equal to an empty object to avoid issues when the user doesn't provide any city information, other way the app will chash
-  geocode(req.query.address, (error, {longitude, latitude, location } = {}) => {
+  geocode(req.query.address, (error, {longitude, latitude, location}) => {
     if (error) {
-      return res.send({ error });
+      return res.send({error})
     }
 
-    forecast(
-      latitude,
-      longitude,
-      (error,
-      (forecastData) => {
-        if (error) {
-          return res.send({ error });
-        }
+    forecast(longitude, latitude, (error, forecastData) => {
+      if(error) {
+        return res.send({error})
+      }
 
-        res.send({
-          location,
-          address: req.query.address,
-          latitud: latitude,
-          longitude: longitude
-        });
+      res.send({
+        forecast: forecastData,
+        location,
+        address: req.query.address,
       })
-    );
-  });
+    })
+  })
 });
 
+  // Important: set the destructuring equal to an empty object to avoid issues when the user doesn't provide any city information, other way the app will chash
+  
+  
 app.get("/products", (req, res) => {
   if (!req.query.search) {
     return res.send({
