@@ -136,5 +136,5 @@ app.get("*", (req, res) => {
 
 // To starts up the server with listen method
 app.listen(port, () => {
-  console.log("Server is ON" + port);
+  console.log("Server is ON " + port);
 });
