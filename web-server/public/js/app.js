@@ -32,7 +32,8 @@ weatherForm.addEventListener("submit", function (e) {
           }, 5000);
         } else {
           console.log(data);
-          messageOne.textContent = `Location: ${data.location}, the longitude is: ${data.longitude} and latitude: ${data.latitud}`;
+          messageOne.textContent = `Location: ${data.location}, the longitude is: ${data.longitude} and latitude: ${data.latitude}`;
+          messageTwo.textContent = `${data.forecast}`;
         }
       });
     }

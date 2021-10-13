@@ -31,9 +31,9 @@ const forecast = (x, y, callback) => {
       // console.log(body);
       callback(undefined, {
         name: body.location.name,
-        forecast: `Weather Description: ${body.current.weather_descriptions} and the temperature is ${body.current.temperature}°C but it feels like ${body.current.feelslike}°C.`,
-        lon: body.location.lat,
-        lat: body.location.lon,
+        forecast: `Weather description: ${body.current.weather_descriptions} and the temperature is ${body.current.temperature}°C but it feels like ${body.current.feelslike}°C.`,
+        lon: body.location.lon,
+        lat: body.location.lat,
         time: body.location.localtime,
       });
     }
