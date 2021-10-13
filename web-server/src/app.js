@@ -13,6 +13,8 @@ const { time } = require("console");
 // Variable to store the application
 const app = express();
 
+const port = process.env.PORT || 3000;
+
 // The paths to connect the application with the index.html in the public folder
 const publicDirectoryPath = path.join(__dirname, "../public");
 const viewsPath = path.join(__dirname, "../templates/views");
@@ -133,6 +135,6 @@ app.get("*", (req, res) => {
 });
 
 // To starts up the server with listen method
-app.listen(3000, () => {
-  console.log("Server is ON");
+app.listen(port, () => {
+  console.log("Server is ON" + port);
 });

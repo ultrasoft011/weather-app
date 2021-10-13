@@ -14,7 +14,6 @@ body {
   flex-grow: 1;
 }
 
-
 header {
   margin-top: 16px;
   margin-bottom: 50px;
@@ -35,4 +34,18 @@ footer h2 {
 h2 {
   font-size: 45px;
   color: rgb(63, 63, 63);
+}
+
+input {
+  border: 1px solid #cccccc;
+  padding: 8px;
+}
+
+button {
+  cursor: pointer;
+  border: 1px solid #888888;
+  background-color: #888888;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
 }
